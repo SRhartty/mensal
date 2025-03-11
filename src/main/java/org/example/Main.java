@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static void waitEnter(Scanner scanner) {
+        System.out.print("Digite qualquer tecla para continuar...)");
+        scanner.next();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int option;
@@ -26,36 +31,27 @@ public class Main {
             switch (option) {
                 case 1:
                     System.out.println("Cadastrar produto");
-                    String answer;
-                    do {
-                        item.createItem(products);
-                        System.out.println("Cadastrar outro produto? (S/N)");
-                        answer = scanner.next();
-                    } while (answer.equalsIgnoreCase("S"));
+                    item.createItem(products, item);
                     break;
 
                 case 2:
                     item.getProducts(products);
-                    System.out.print("Digite qualquer tecla para continuar...)");
-                    scanner.next();
+                    waitEnter(scanner);
                     break;
 
                 case 3:
                     item.findByName(products, scanner);
-                    System.out.print("Digite qualquer tecla para continuar...)");
-                    scanner.next();
+                    waitEnter(scanner);
                     break;
 
                 case 4:
                     item.deleteProduct(products, scanner);
-                    System.out.print("Digite qualquer tecla para continuar...)");
-                    scanner.next();
+                    waitEnter(scanner);
                     break;
 
                 case 5:
                     item.updateProduct(products, scanner);
-                    System.out.print("Digite qualquer tecla para continuar...)");
-                    scanner.next();
+                    waitEnter(scanner);
                     break;
 
                 case 6:

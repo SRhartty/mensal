@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public interface ItemInterface {
 
-    void createItem(Map<String, Item> products);
+    void createItem(Map<String, Item> products, Item item);
     void getProducts(Map<String, Item> products);
     void findByName(Map<String, Item> products, Scanner scanner);
     void deleteProduct(Map<String, Item> products, Scanner scanner);
