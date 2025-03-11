@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static void clearScreen() {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -18,8 +22,19 @@ public class Main {
 
             switch (option) {
                 case 1:
+                    clearScreen();
                     System.out.println("Cadastrar produto");
-                    // Add code to register a product
+
+                    System.out.print("Nome: ");
+                    String nome = scanner.next();
+                    System.out.print("Preço: ");
+                    float preco = scanner.nextFloat();
+                    System.out.print("Quantidade: ");
+                    int quantidade = scanner.nextInt();
+                    Item product = new Item(nome, preco, quantidade);
+                    clearScreen();
+                    System.out.println("Produto cadastrado com sucesso!");
+
                     break;
                 case 2:
                     System.out.println("Listar produtos");
