@@ -2,7 +2,7 @@ package org.example;
 
 public class Menu {
 
-    public void renderProduto() {
+    public void renderMenu() {
         System.out.println(
                 """
                         ||========================================||
