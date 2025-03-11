@@ -1,5 +1,6 @@
 package org.example.products;
 
+import org.example.enums.Categoria;
 import org.example.interfaces.ItemInterface;
 
 import java.util.Map;
@@ -9,12 +10,14 @@ public class Item extends Stock implements ItemInterface {
 
     private String nome;
     private double preco;
+    private Categoria categoria;
 
 
-    public Item(String nome, double preco, int quantidade) {
+    public Item(String nome, double preco, int quantidade, Categoria categoria) {
         super(quantidade);
         this.nome = nome;
         this.preco = preco;
+        this.categoria = categoria;
     }
 
     public Item() {}
@@ -35,6 +38,14 @@ public class Item extends Stock implements ItemInterface {
         this.preco = preco;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
 
     @Override
     public void createItem(Map<String, Item> products) {
@@ -45,7 +56,9 @@ public class Item extends Stock implements ItemInterface {
         float preco = scanner.nextFloat();
         System.out.print("Quantidade: ");
         int quantidade = scanner.nextInt();
-        Item newItem = new Item(nome, preco, quantidade);
+        System.out.print("Categoria (LIVRE | RESTRITO): ");
+        Categoria categoria = Categoria.valueOf(scanner.next().toUpperCase());
+        Item newItem = new Item(nome, preco, quantidade, categoria);
         if (products.containsKey(newItem.getNome())) {
             System.out.println("Produto já existe!");
         } else {
@@ -63,6 +76,7 @@ public class Item extends Stock implements ItemInterface {
             System.out.println("Nome: " + product.getNome());
             System.out.println("Preço: " + product.getPreco());
             System.out.println("Quantidade: " + product.getQuantidade());
+            System.out.println("Categoria: " + product.getCategoria());
             System.out.println("||=========================================||");
         }
     }
@@ -77,6 +91,7 @@ public class Item extends Stock implements ItemInterface {
             System.out.println("Nome: " + product.getNome());
             System.out.println("Preço: " + product.getPreco());
             System.out.println("Quantidade: " + product.getQuantidade());
+            System.out.println("Categoria: " + product.getCategoria());
             System.out.println("||=========================================||");
         } else {
             System.out.println("Produto não encontrado.");
@@ -110,6 +125,8 @@ public class Item extends Stock implements ItemInterface {
             updateProduct.setPreco(scanner.nextDouble());
             System.out.print("Digite a nova quantidade: ");
             updateProduct.setQuantidade(scanner.nextInt());
+            System.out.print("Digite a nova categoria: ");
+            updateProduct.setCategoria(Categoria.valueOf(scanner.next().toUpperCase()));
             System.out.println("Produto atualizado com sucesso!");
         } else {
             System.out.println("Produto não encontrado.");
