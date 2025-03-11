@@ -78,7 +78,9 @@ public class Main {
                     System.out.println("Deletar produto");
                     System.out.print("Digite o nome do produto: ");
                     String deleteName = scanner.next();
-                    if (products.remove(deleteName) != null) {
+                    Item productDelete = products.get(deleteName);
+                    if (productDelete != null) {
+                        products.remove(deleteName);
                         System.out.println("Produto deletado com sucesso!");
                     } else {
                         System.out.println("Produto não encontrado.");
