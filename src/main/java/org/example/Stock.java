@@ -1,6 +1,8 @@
 package org.example;
 
-public abstract class Stock {
+import org.example.interfaces.StockInterface;
+
+public abstract class Stock implements StockInterface {
 
     private String nome;
     private double preco;
