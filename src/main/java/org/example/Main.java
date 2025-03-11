@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.menu.Menu;
+import org.example.products.Item;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

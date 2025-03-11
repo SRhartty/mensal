@@ -1,6 +1,6 @@
 package org.example.interfaces;
 
-import org.example.Item;
+import org.example.products.Item;
 
 import java.util.Map;
 import java.util.Scanner;
