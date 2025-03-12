@@ -1,32 +1,20 @@
-package org.example;
+package org.example.clientes;
 
-public class Cliente {
-	private String nome;
-    private String telefone;
+import java.util.Map;
+import java.util.Scanner;
+
+import org.example.pessoas.Pessoa;
+
+public class Cliente extends Pessoa {
     private double carteira;
 
-	public Cliente(String nome, String telefone, double carteira) {
-		this.nome = nome;
-        this.telefone = telefone;
+	public Cliente(double carteira, String nome, String telefone, int idade) {
+        super(nome, telefone, idade);
         this.carteira = carteira;
 
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public String getTelefone() {
-        return telefone;
-    }
-    
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+    public Cliente() {}
     
     public double getCarteira() {
         return carteira;
@@ -36,18 +24,22 @@ public class Cliente {
         this.carteira = carteira;
     }
 
-    public static void cadastrarCliente(Scanner scanner) {
+    public static void cadastrarCliente(Map<String, Cliente> clientes, Scanner scanner) {
         System.out.print("Digite o nome do cliente: ");
         String nome = scanner.nextLine();
 
+        System.out.print("Digite a idade do cliente: ");
+        int idade = scanner.nextInt();
+
         System.out.print("Digite o telefone do cliente: ");
-        String telefone = scanner.nextLine();
+        String telefone = scanner.next();
 
         System.out.print("Digite o valor da carteira do cliente: ");
-        String carteira = scanner.nextLine();
+        String carteira = scanner.next();
+        
+        Cliente cliente = new Cliente(carteira, nome, telefone, idade);
 
-        Cliente cliente = new Cliente(nome, telefone, carteira);
-        clientes.add(cliente);
+        // Cliente cliente = new Cliente(nome, idade, telefone, carteira);
 
         System.out.println("Cliente cadastrado com sucesso!");
     }
