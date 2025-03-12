@@ -3,7 +3,9 @@ package org.example.clientes;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Cliente extends Pessoa {
+import org.example.interfaces.ClienteInterface;
+
+public class Cliente extends Pessoa implements ClienteInterface {
     private double carteira;
 
 	public Cliente(double carteira, String nome, String telefone, int idade) {
@@ -21,7 +23,7 @@ public class Cliente extends Pessoa {
         this.carteira = carteira;
     }
 
-    public static void createCliente(Map<String, Cliente> clientes, Scanner scanner) {
+    public void createCliente(Map<String, Cliente> clientes, Cliente cliente, Scanner scanner) {
         System.out.print("Digite o nome do cliente: ");
         String nome = scanner.nextLine();
 
@@ -44,11 +46,74 @@ public class Cliente extends Pessoa {
         }
         String answer;
         do {
+            cliente.createCliente(clientes, cliente, scanner);
             System.out.print("Deseja cadastrar outro cliente? (S/N): ");
             answer = scanner.next();
-            if (answer.equals("S")) {
-                createCliente(clientes, scanner);
-            }
         } while (answer.equalsIgnoreCase("S"));
+    }
+
+    @Override
+    public void getCliente(Map<String, Cliente> clientes) {
+        System.out.println("Listar clientes");
+        System.out.println("||=========================================||");
+        for (Cliente cliente : clientes.values()) {
+            System.out.println("Nome: " + cliente.getNome());
+            System.out.println("Idade: " + cliente.getIdade());
+            System.out.println("Telefone: " + cliente.getTelefone());
+            System.out.println("Carteira: " + cliente.getCarteira());
+            System.out.println("||=========================================||");
+        }
+    }
+
+    @Override
+    public void findByName(Map<String, Cliente> clientes, Scanner scanner) {
+        System.out.println("Buscar por nome");
+        System.out.print("Digite o nome do cliente: ");
+        String name = scanner.next();
+        Cliente cliente = clientes.get(name);
+        if (cliente != null) {
+            System.out.println("Nome: " + cliente.getNome());
+            System.out.println("Idade: " + cliente.getIdade());
+            System.out.println("Telefone: " + cliente.getTelefone());
+            System.out.println("Carteira: " + cliente.getCarteira());
+            System.out.println("||=========================================||");
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
+    }
+
+    @Override
+    public void deleteCliente(Map<String, Cliente> clientes, Scanner scanner) {
+        System.out.println("Deletar cliente");
+        System.out.print("Digite o nome do cliente: ");
+        String deleteName = scanner.next();
+        Cliente ClienteDelete = clientes.get(deleteName);
+        if (ClienteDelete != null) {
+            clientes.remove(deleteName);
+            System.out.println("Cliente deletado com sucesso!");
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
+    }
+
+    @Override
+    public void updateCliente(Map<String, Cliente> clientes, Scanner scanner) {
+        System.out.println("Atualizar cadastro do cliente");
+        System.out.print("Digite o nome do cliente a ser atualizado: ");
+        String updateName = scanner.next();
+        Cliente updateCliente = clientes.get(updateName);
+        if (updateCliente != null) {
+            System.out.print("Digite o novo nome: ");
+            updateCliente.setNome(scanner.next());
+            System.out.print("Digite o nova idade: ");
+            updateCliente.setIdade(scanner.nextInt());
+            System.out.print("Digite a nov telefone: ");
+            updateCliente.setTelefone(scanner.next());
+            System.out.print("Digite o novo valor da carteira: ");
+            updateCliente.setCarteira(scanner.nextDouble());
+            System.out.println("Cadastro do cliente atualizado com sucesso!");
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
     }
 }
