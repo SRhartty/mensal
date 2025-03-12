@@ -24,45 +24,67 @@ public class Main {
 
         do {
             Menu menu = new Menu();
-            menu.renderMenu();
+            menu.mainMenu();
 
             System.out.print("Escolha uma opção: ");
             option = scanner.nextInt();
 
-            switch (option) {
-                case 1:
-                    System.out.println("Cadastrar produto");
-                    item.createItem(products, item);
-                    break;
+            if (option == 1) {
+                do {
+                    menu.renderProducts();
+                    System.out.print("Escolha uma opção: ");
+                    option = scanner.nextInt();
+                    switch (option) {
+                        case 1:
+                            System.out.println("Cadastrar produto");
+                            item.createItem(products, item);
+                            break;
 
-                case 2:
-                    item.getProducts(products);
-                    waitEnter(scanner);
-                    break;
+                        case 2:
+                            item.getProducts(products);
+                            waitEnter(scanner);
+                            break;
 
-                case 3:
-                    item.findByName(products, scanner);
-                    waitEnter(scanner);
-                    break;
+                        case 3:
+                            item.findByName(products, scanner);
+                            waitEnter(scanner);
+                            break;
 
-                case 4:
-                    item.deleteProduct(products, scanner);
-                    waitEnter(scanner);
-                    break;
+                        case 4:
+                            item.deleteProduct(products, scanner);
+                            waitEnter(scanner);
+                            break;
 
-                case 5:
-                    item.updateProduct(products, scanner);
-                    waitEnter(scanner);
-                    break;
+                        case 5:
+                            item.updateProduct(products, scanner);
+                            waitEnter(scanner);
+                            break;
 
-                case 6:
-                    System.out.println("Saindo...");
-                    break;
+                        case 6:
+                            break;
 
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                        default:
+                            System.out.println("Opção inválida. Tente novamente.");
+                    }
+                } while (option != 6);
+
             }
-        } while (option != 6);
+
+            if (option == 2) {
+                System.out.println("Usuários");
+                waitEnter(scanner);
+            }
+
+            if (option == 3) {
+                int exit = 0;
+                do {
+
+                    System.out.println("Deseja sair do pdv? (1 - Sim | 0 - Não)");
+                    exit = scanner.nextInt();
+                }while (exit == 1);
+            }
+
+        } while (option != 4);
 
         scanner.close();
     }
