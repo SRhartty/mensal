@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.menu.Menu;
-import org.example.pessoas.Pessoa;
 import org.example.products.Item;
 
 import java.util.HashMap;
@@ -22,8 +21,6 @@ public class Main {
         Map<String, Item> products = new HashMap<>();
         Item item = new Item();
 
-        Map<String, Cliente> clientes = new HashMap<>();
-        Cliente cliente = new Cliente();
 
         do {
             Menu menu = new Menu();

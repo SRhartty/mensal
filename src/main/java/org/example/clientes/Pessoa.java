@@ -1,4 +1,4 @@
-package org.example.pessoas;
+package org.example.clientes;
 
 import org.example.interfaces.PessoaInterface;
 
@@ -12,6 +12,8 @@ public abstract class Pessoa implements PessoaInterface {
             this.telefone = telefone;
             this.idade = idade;
     }
+
+    public Pessoa(){}
 
     public String getNome() {
         return nome;
