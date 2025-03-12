@@ -23,7 +23,8 @@ public class Cliente extends Pessoa implements ClienteInterface {
         this.carteira = carteira;
     }
 
-    public void createCliente(Map<String, Cliente> clientes, Cliente cliente, Scanner scanner) {
+    public void createCliente(Map<String, Cliente> clientes, Cliente cliente) {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o nome do cliente: ");
         String nome = scanner.nextLine();
 
@@ -45,11 +46,16 @@ public class Cliente extends Pessoa implements ClienteInterface {
             System.out.println("||========================================||");
         }
         String answer;
-        do {
-            cliente.createCliente(clientes, cliente, scanner);
-            System.out.print("Deseja cadastrar outro cliente? (S/N): ");
+        System.out.println("Cadastrar outro cliente? (S/N): ");
+        answer = scanner.next();
+        while (answer.equalsIgnoreCase("S")) {
+            if(answer.equalsIgnoreCase("N")) {
+                break;
+            }
+            createCliente(clientes, cliente);
+            System.out.println("Cadastrar outro cliente? (S/N): ");
             answer = scanner.next();
-        } while (answer.equalsIgnoreCase("S"));
+        }
     }
 
     @Override

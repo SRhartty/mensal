@@ -67,11 +67,16 @@ public class Item extends Stock implements ItemInterface {
             System.out.println("||========================================||");
         }
         String answer;
-        do {
+        System.out.println("Cadastrar outro produto? (S/N)");
+        answer = scanner.next();
+        while (answer.equalsIgnoreCase("S")) {
+            if (answer.equalsIgnoreCase("N")) {
+                break;
+            }
             item.createItem(products, item);
             System.out.println("Cadastrar outro produto? (S/N)");
             answer = scanner.next();
-        } while (answer.equalsIgnoreCase("S"));
+        }
     }
 
     @Override
